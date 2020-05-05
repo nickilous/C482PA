@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="scrMain" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InventorySystem.ViewControllers.MainScreenController">
+    <children>
+        <Label layoutX="15.0" layoutY="15.0" text="Inventory Management System" textFill="#00009b" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <font>
+                <Font name="Times New Roman Bold" size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnExit" layoutX="534.0" layoutY="347.0" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+            <font>
+                <Font name="Times New Roman" size="18.0" />
+            </font>
+        </Button>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <AnchorPane centerShape="false" prefHeight="280.0" prefWidth="270.0" style="-fx-border-color: #000000; -fx-border-radius: 15;" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets right="7.5" />
+                    </HBox.margin>
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Parts" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font name="Times New Roman Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtSearchParts" layoutX="294.0" layoutY="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button fx:id="btnSearchParts" layoutX="199.0" layoutY="16.0" mnemonicParsing="false" onAction="#searchPartsAction" text="Search" AnchorPane.rightAnchor="199.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font name="Times New Roman" size="14.0" />
+                            </font>
+                        </Button>
+                        <ButtonBar buttonMinWidth="80.0" layoutX="243.0" layoutY="366.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                            <buttons>
+                                <Button fx:id="btnAddParts" alignment="CENTER" mnemonicParsing="false" onAction="#addPartsAction" text="Add">
+                                    <font>
+                                        <Font name="Times New Roman" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnModifyParts" alignment="CENTER" mnemonicParsing="false" onAction="#modifyPartsAction" text="Modify">
+                                    <font>
+                                        <Font name="Times New Roman" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnDeleteParts" alignment="CENTER" mnemonicParsing="false" onAction="#deletePartsAction" text="Delete">
+                                    <font>
+                                        <Font name="Times New Roman" size="14.0" />
+                                    </font>
+                                </Button>
+                            </buttons>
+                        </ButtonBar>
+                        <TableView fx:id="tvParts" editable="true" fixedCellSize="-1.0" layoutX="14.0" layoutY="58.0" onSort="#updatePartsTV" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
+                            <columns>
+                                <TableColumn fx:id="partIDCol" maxWidth="-1.0" minWidth="75.0" prefWidth="75.0" text="Part ID" />
+                                <TableColumn fx:id="partNameCol" maxWidth="-1.0" minWidth="125.0" prefWidth="125.0" text="Part Name" />
+                                <TableColumn fx:id="partInStockCol" maxWidth="-1.0" minWidth="100.0" prefWidth="100.0" text="Inventory Level" />
+                                <TableColumn fx:id="partPriceCol" maxWidth="-1.0" minWidth="125.0" prefWidth="125.0" text="Price/Cost Per Unit" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane centerShape="false" prefHeight="280.0" prefWidth="270.0" style="-fx-border-color: #000000; -fx-border-radius: 15;" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets left="7.5" />
+                    </HBox.margin>
+                    <children>
+                        <TableView fx:id="tvProducts" onSort="#updateProductsTV" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
+                            <columns>
+                                <TableColumn fx:id="productIDCol" maxWidth="-1.0" minWidth="75.0" prefWidth="75.0" text="Product ID" />
+                                <TableColumn fx:id="productNameCol" maxWidth="-1.0" minWidth="125.0" prefWidth="125.0" text="Product Name" />
+                                <TableColumn fx:id="productInventoryCol" maxWidth="-1.0" minWidth="100.0" prefWidth="100.0" text="Inventory Level" />
+                                <TableColumn fx:id="productPriceCol" maxWidth="-1.0" minWidth="125.0" prefWidth="125.0" text="Price Per Unit" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="14.0" text="Products" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font name="Times New Roman Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtSearchProducts" layoutX="300.0" layoutY="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font name="Times New Roman Bold Italic" size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button fx:id="btnSearchProducts" layoutX="199.0" layoutY="16.0" mnemonicParsing="false" onAction="#searchProductsAction" text="Search" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font name="Times New Roman" size="14.0" />
+                            </font>
+                        </Button>
+                        <ButtonBar buttonMinWidth="80.0" layoutX="241.0" layoutY="366.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                            <buttons>
+                                <Button fx:id="btnAddProducts" mnemonicParsing="false" onAction="#addProductsAction" text="Add">
+                                    <font>
+                                        <Font name="Times New Roman" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnModifyProducts" mnemonicParsing="false" onAction="#modifyProductsAction" text="Modify">
+                                    <font>
+                                        <Font name="Times New Roman" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnDeleteProducts" mnemonicParsing="false" onAction="#deleteProductsAction" text="Delete">
+                                    <font>
+                                        <Font name="Times New Roman" size="14.0" />
+                                    </font>
+                                </Button>
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
