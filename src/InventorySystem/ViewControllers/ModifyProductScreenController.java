@@ -33,7 +33,6 @@ import static InventorySystem.ViewControllers.MainScreenController.getSelectedPr
  * @author Nicholas Hartman
  */
 public class ModifyProductScreenController implements Initializable, ScreenPaths, UIStringConstants {
-    Product product = new Product();
     private Product selectedProduct;
 
 
@@ -154,8 +153,8 @@ public class ModifyProductScreenController implements Initializable, ScreenPaths
             nullPartAlert.setContentText(partNotSelectedContent);
             nullPartAlert.showAndWait();
         } else {
-            product.addAssociatedPart(part);
-            tvAssociatedParts.setItems(product.getAllAssociatedParts());
+            selectedProduct.addAssociatedPart(part);
+            tvAssociatedParts.setItems(selectedProduct.getAllAssociatedParts());
         }
     }
 
@@ -170,7 +169,7 @@ public class ModifyProductScreenController implements Initializable, ScreenPaths
         if (deletePartAlert.getResult() == ButtonType.OK) {
             try {
                 Part part = tvAssociatedParts.getSelectionModel().getSelectedItem();
-                product.deleteAssociatedPart(part);
+                selectedProduct.deleteAssociatedPart(part);
             } catch (NullPointerException e) {
                 Alert noPartSelectedAlert = new Alert(Alert.AlertType.ERROR);
                 noPartSelectedAlert.setTitle(productPartDeletionErrorTitle);
@@ -208,9 +207,9 @@ public class ModifyProductScreenController implements Initializable, ScreenPaths
             alert.setContentText(productPartNotSelectedContent);
             alert.showAndWait();
         } else {
-            selectedProduct.setProductID(productID);
+            selectedProduct.setId(productID);
             selectedProduct.setName(name);
-            selectedProduct.setInStock(Integer.parseInt(inStock));
+            selectedProduct.setStock(Integer.parseInt(inStock));
             selectedProduct.setPrice(Double.parseDouble(price));
             selectedProduct.setMax(Integer.parseInt(max));
             selectedProduct.setMin(Integer.parseInt(min));
@@ -265,30 +264,33 @@ public class ModifyProductScreenController implements Initializable, ScreenPaths
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         selectedProduct = getSelectedProduct();
-        productID = getSelectedProduct().getProductID();
+        productID = getSelectedProduct().getId();
         txtModifyProductID.setText("Auto Gen: " + productID);
         txtModifyProductName.setText(selectedProduct.getName());
-        txtModifyProductInv.setText(Integer.toString(selectedProduct.getInStock()));
+        txtModifyProductInv.setText(Integer.toString(selectedProduct.getStock()));
         txtModifyProductPrice.setText(Double.toString(selectedProduct.getPrice()));
         txtModifyProductMax.setText(Integer.toString(selectedProduct.getMax()));
         txtModifyProductMin.setText(Integer.toString(selectedProduct.getMin()));
+        updatePartsInStockTV();
+        currentAssocParts = selectedProduct.getAllAssociatedParts();
 
-        currentAssocParts = product.getAllAssociatedParts();
-
-        partIDCol.setCellValueFactory(new PropertyValueFactory<>("partID"));
+        partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        partInStockCol.setCellValueFactory(new PropertyValueFactory<>("inStock"));
+        partInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("partID"));
+        associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedPartInStockCol.setCellValueFactory(new PropertyValueFactory<>("inStock"));
+        associatedPartInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         updateAssociatedPartsTV();
     }
 
     public void updateAssociatedPartsTV() {
         tvAssociatedParts.setItems(currentAssocParts);
+    }
+    public void updatePartsInStockTV(){
+        tvPartsInStock.setItems(MainScreenController.inventory.getAllParts());
     }
 }
 

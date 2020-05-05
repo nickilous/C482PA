@@ -73,7 +73,7 @@ public class HelperFunctions {
 
     public static void getProductValidation(Product product) throws ProductNotValidException {
         String errProductValid = "";
-        if (product.getInStock() < 1) {
+        if (product.getStock() < 1) {
             errProductValid = errProductValid + "\nThe Inventory cannot be less than 1. ";
         } else
         if (product.getPrice() <= 0) {
@@ -82,10 +82,10 @@ public class HelperFunctions {
         if (product.getMax() < product.getMin()) {
             errProductValid = errProductValid + "\nThe Maximum stock must be greater than the Minimum stock. ";
         } else
-        if (product.getInStock() > product.getMax()) {
+        if (product.getStock() > product.getMax()) {
             errProductValid = errProductValid + "\nThe Inventory must be less than or equal to the Maximum stock. ";
         } else
-        if (product.getInStock() < product.getMin()) {
+        if (product.getStock() < product.getMin()) {
             errProductValid = errProductValid + "\nThe Inventory must be greater than or equal to the Minimum stock. ";
         }
         if (!errProductValid.isEmpty()){

@@ -38,7 +38,7 @@ public class Inventory {
 
     public boolean deleteProduct(Product selectedProduct) {
         for (Product p : allProducts){
-            if (p.getProductID() == selectedProduct.getProductID()) {
+            if (p.getId() == selectedProduct.getId()) {
                 allProducts.remove(p);
                 return true;
             }
@@ -55,7 +55,7 @@ public class Inventory {
     }
     public Product lookupProduct(int productID) {
         for (Product p : allProducts) {
-            if (p.getProductID() == productID) {
+            if (p.getId() == productID) {
                 return p;
             }
         }

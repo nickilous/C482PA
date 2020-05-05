@@ -67,12 +67,6 @@ public class AddPartScreenController implements Initializable, ScreenPaths, UISt
     private boolean bOutSourced;
 
     @FXML
-    private String errPartValid = new String();
-
-    @FXML
-    private String errPartField = new String();
-
-    @FXML
     private int partID;
 // End of UI Elements
 

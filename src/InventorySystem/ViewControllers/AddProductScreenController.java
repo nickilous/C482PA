@@ -88,11 +88,6 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
     @FXML
     private int productID;
 
-    @FXML
-    private String errProductValid = new String();
-
-    @FXML
-    private String errProductField = new String();
     // End of UI Elements
 
     /**
@@ -142,6 +137,13 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
             }
         }
     }
+
+    @FXML
+    public void updatePartsInStockTV(){
+        tvPartsInStock.setItems(MainScreenController.inventory.getAllParts());
+    }
+
+
 
     @FXML
     public void handleAddAction(ActionEvent event) {
@@ -209,9 +211,9 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
             alert.showAndWait();
         } else {
 
-            product.setProductID(productID);
+            product.setId(productID);
             product.setName(name);
-            product.setInStock(Integer.parseInt(stock));
+            product.setStock(Integer.parseInt(stock));
             product.setPrice(Double.parseDouble(price));
             product.setMax(Integer.parseInt(max));
             product.setMin(Integer.parseInt(min));
@@ -272,7 +274,7 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+        updatePartsInStockTV();
         associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         associatedPartInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));

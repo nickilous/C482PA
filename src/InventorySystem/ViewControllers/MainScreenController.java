@@ -356,9 +356,9 @@ public class MainScreenController implements Initializable, ScreenPaths, UIStrin
         partInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         updatePartsTV();
-        productIDCol.setCellValueFactory(new PropertyValueFactory("productID"));
+        productIDCol.setCellValueFactory(new PropertyValueFactory("id"));
         productNameCol.setCellValueFactory(new PropertyValueFactory("name"));
-        productInventoryCol.setCellValueFactory(new PropertyValueFactory("inStock"));
+        productInventoryCol.setCellValueFactory(new PropertyValueFactory("stock"));
         productPriceCol.setCellValueFactory(new PropertyValueFactory("price"));
         updateProductsTV();
     }

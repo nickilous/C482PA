@@ -50,20 +50,20 @@ public class Product {
         return false;
     }
 
-    public int getProductID() {
+    public int getId() {
         return id;
     }
 
-    public void setProductID(int productID) {
+    public void setId(int productID) {
         this.id = productID;
     }
 
-    public int getInStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setInStock(int inStock) {
-        this.stock = inStock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public int getMin() {
