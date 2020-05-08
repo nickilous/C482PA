@@ -73,11 +73,6 @@ public class ModifyPartScreenController implements Initializable, ScreenPaths, U
     @FXML
     private boolean bOutSourced;
 
-    @FXML
-    private String errPartValid = new String();
-
-    @FXML
-    private String errPartField = new String();
     private Part selectedPart;
     private Part modifiedPart;
     // End of UI Elements

@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * @author Nicholas Hartman
  */
 public class AddProductScreenController implements Initializable, ScreenPaths, UIStringConstants {
-    Product product = new Product(); //instantiation of new product to add
+    Product product;
     /**
      * Start of UI Elements
      **/
@@ -87,6 +87,11 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
 
     @FXML
     private int productID;
+    private String name;
+    private String stock;
+    private String price;
+    private String max;
+    private String min;
 
     // End of UI Elements
 
@@ -184,13 +189,10 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
         }
     }
 
+
     @FXML
     public void handleSaveAction(ActionEvent event) throws IOException {
-        String name = txtAddProductName.getText();
-        String stock = txtAddProductInv.getText();
-        String price = txtAddProductPrice.getText();
-        String max = txtAddProductMax.getText();
-        String min = txtAddProductMin.getText();
+        updateFromUI();
         ObservableList<Part> parts = tvAssociatedParts.getItems();
 
         try {
@@ -262,7 +264,13 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
         }
     }
 
-
+    private void updateFromUI(){
+         name = txtAddProductName.getText();
+         stock = txtAddProductInv.getText();
+         price = txtAddProductPrice.getText();
+         max = txtAddProductMax.getText();
+         min = txtAddProductMin.getText();
+    }
     /**
      * Initializes the controller class.
      * sets up productID with maybe a unique partID
@@ -274,7 +282,9 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
         updatePartsInStockTV();
+
         associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         associatedPartInStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -282,6 +292,16 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
 
         productID = HelperFunctions.generateIDs();
         txtAddProductID.setText("Auto Gen: " + productID);
+
+
+        updateFromUI();
+        product = new Product(productID,
+                name,
+                Double.parseDouble(price),
+                Integer.parseInt(stock),
+                Integer.parseInt(min),
+                Integer.parseInt(max));
+
     }
 
 }

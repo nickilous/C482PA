@@ -16,9 +16,6 @@ public class Inventory {
     private ObservableList<Product> allProducts = FXCollections.observableArrayList();
     private ObservableList<Part> allParts = FXCollections.observableArrayList();
 
-    private int partID = 0;
-    private int productID = 0;
-
     public void addPart(Part part) throws PartNotValidException {
         try{
             HelperFunctions.getPartValidation(part);

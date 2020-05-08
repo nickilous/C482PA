@@ -117,14 +117,13 @@ public class AddPartScreenController implements Initializable, ScreenPaths, UISt
             alert.showAndWait();
         }
         if (bOutSourced == true) {
-            OutSourced outSourced = new OutSourced();
-            outSourced.setId(partID);
-            outSourced.setName(name);
-            outSourced.setStock(Integer.parseInt(inStock));
-            outSourced.setPrice(Double.parseDouble(price));
-            outSourced.setMax(Integer.parseInt(max));
-            outSourced.setMin(Integer.parseInt(min));
-            outSourced.setCompanyName(partDyn);
+            OutSourced outSourced = new OutSourced(partID,
+                    name,
+                    Double.parseDouble(price),
+                    Integer.parseInt(inStock),
+                    Integer.parseInt(min),
+                    Integer.parseInt(max),
+                    partDyn);
             try {
                 MainScreenController.inventory.addPart(outSourced);
             } catch (PartNotValidException ex) {
@@ -135,14 +134,13 @@ public class AddPartScreenController implements Initializable, ScreenPaths, UISt
                 alert.showAndWait();
             }
         } else {
-            InHouse inHouse = new InHouse();
-            inHouse.setId(partID);
-            inHouse.setName(name);
-            inHouse.setStock(Integer.parseInt(inStock));
-            inHouse.setPrice(Double.parseDouble(price));
-            inHouse.setMax(Integer.parseInt(max));
-            inHouse.setMin(Integer.parseInt(min));
-            inHouse.setMachineID(Integer.parseInt(partDyn));
+            InHouse inHouse = new InHouse(partID,
+                    name,
+                    Double.parseDouble(price),
+                    Integer.parseInt(inStock),
+                    Integer.parseInt(min),
+                    Integer.parseInt(max),
+                    Integer.parseInt(partDyn));
             try {
                 MainScreenController.inventory.addPart(inHouse);
             } catch (PartNotValidException ex) {

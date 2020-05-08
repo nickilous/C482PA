@@ -27,14 +27,6 @@ public class Product {
         this.max = max;
     }
 
-    public Product(){
-        this.id = 0;
-        this.name = "";
-        this.price = 0.0;
-        this.stock = 0;
-        this.min = 0;
-        this.max = 0;
-    }
 
     public void addAssociatedPart(Part part){
         associatedParts.add(part);

@@ -13,11 +13,6 @@ public class OutSourced extends Part {
         super(id, name, price, stock, min, max);
         this.companyName = companyName;
     }
-    public OutSourced(){
-        super();
-        this.companyName = "";
-    }
-
     public String getCompanyName() {
         return companyName;
     }
