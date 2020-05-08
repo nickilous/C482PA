@@ -87,6 +87,7 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
 
     @FXML
     private int productID;
+
     private String name;
     private String stock;
     private String price;
@@ -293,14 +294,12 @@ public class AddProductScreenController implements Initializable, ScreenPaths, U
         productID = HelperFunctions.generateIDs();
         txtAddProductID.setText("Auto Gen: " + productID);
 
-
-        updateFromUI();
         product = new Product(productID,
-                name,
-                Double.parseDouble(price),
-                Integer.parseInt(stock),
-                Integer.parseInt(min),
-                Integer.parseInt(max));
+                "",
+                0,
+                0,
+                0,
+                0);
 
     }
 
